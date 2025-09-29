@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import useFetchData from "./custom-hooks/useFetchData";
 
+
 function App() {
   const [data, error, getData] = useFetchData();
   const [query, setQuery] = useState(() => {
@@ -11,6 +12,7 @@ function App() {
 
   const buttonRef = useRef(null); // use to press enter
   const [loading, setLoading] = useState(false);
+
 
   //Handler for search button
   const handleSearch = () => {
