@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const useFetchData = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(() => {
+    const storedVideos = localStorage.getItem("videos");
+    return storedVideos ? JSON.parse(storedVideos) : null;
+  })
+  
   const [error, setError] = useState(null);
 
-  async function getData(query, key) {
+  async function getData(query) {
     try {
    
       const options = {
@@ -18,7 +22,7 @@ const useFetchData = () => {
           type: "v",
         },
         headers: {
-          "x-rapidapi-key": key || "61515043b6msh494267fcc3f13f9p108597jsn289575ba76fe",
+          "x-rapidapi-key": "61515043b6msh494267fcc3f13f9p108597jsn289575ba76fe",
           "x-rapidapi-host": "youtube-search-and-download.p.rapidapi.com",
         },
       };
