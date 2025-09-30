@@ -51,7 +51,7 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center px-2 sm:px-4 md:px-8 py-4">
+      {/* <div className="flex flex-col items-center px-2 sm:px-4 md:px-8 py-4"> */}
         <div
           className={`shadow-lg shadow-white bg-[url('/pexels-karolina-grabowska-6634140.jpg')] bg-cover bg-center w-auto flex grow flex-col items-center border rounded-lg p-0
             ${theme === "light"
@@ -59,7 +59,7 @@ function App() {
               : "bg-gray-900 text-white"
           }`}
         >
-          <h1 className={`w-full pt-5 pb-2 text-2xl sm:text-3xl text-center 
+          <h1 className={`w-full pt-5 pb-2 text-2xl sm:text-3xl text-center rounded-t-lg
             ${theme === "light"
               ? "bg-white text-black"
               : "bg-black text-white"
@@ -104,7 +104,7 @@ function App() {
           </div>
           {/* map over the array of videos that are returned */}
           {/*<div className="w-full text-2xl p-3 mb-2 min-h-[400px] min-w-[800px] flex items-center justify-center">*/}
-          <div className="text-xl p-2 flex items-center justify-center sm:text-2xl sm:p-3 sm:min-h-[400px]">
+          <div className="text-xl p-2 flex items-center min-h-[300px] justify-center sm:text-2xl sm:p-3 sm:min-h-[400px]">
             {loading ? (
               <div>...loading</div>
             ) : data && data.contents && data.contents.length > 0 ? (
@@ -143,11 +143,11 @@ function App() {
               <div className="p-3 mb-2">No results</div>
             )}
           </div>
-          <p className="w-full bg-black pl-4 pt-4 pb-4 border border-transparent text-white text-sm text-left">
+          <p className="w-full bg-black pl-4 pt-4 pb-4 border border-transparent text-white text-sm text-left rounded-lg">
             &copy; 2025 soloSoftwareDev
           </p>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 }
