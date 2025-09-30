@@ -59,14 +59,14 @@ function App() {
               : "bg-gray-900 text-white"
           }`}
         >
-          <h1 className={`w-full pt-4 pb-2 text-2xl sm:text-3xl text-center 
+          <h1 className={`w-full pt-5 pb-2 text-2xl sm:text-3xl text-center 
             ${theme === "light"
               ? "bg-white text-black"
               : "bg-black text-white"
             }`}>
             Youtube Videos
           </h1>
-          <h2 className={`w-full pb-4 text-3xl text-center mb-6 shadow-lg shadow-white
+          <h2 className={`w-full pb-6 text-3xl text-center mb-6 shadow-lg shadow-white
             ${theme === "light"
               ? "bg-white text-black"
               : "bg-black text-white"
@@ -143,7 +143,7 @@ function App() {
               <div className="p-3 mb-2">No results</div>
             )}
           </div>
-          <p className="w-full bg-black pt-4 pb-4 border border-transparent text-white text-sm text-left">
+          <p className="w-full bg-black pl-4 pt-4 pb-4 border border-transparent text-white text-sm text-left">
             &copy; 2025 soloSoftwareDev
           </p>
         </div>
