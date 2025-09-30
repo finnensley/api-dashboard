@@ -51,15 +51,15 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center min-h-screen px-2 sm:px-4 md:px-8 py-4">
         <div
-          className={`shadow-lg shadow-white bg-[url('src/assets/pexels-karolina-grabowska-6634140.jpg')] bg-cover bg-center w-full flex grow flex-col items-center border rounded-lg
+          className={`shadow-lg shadow-white bg-[url('src/assets/pexels-karolina-grabowska-6634140.jpg')] bg-cover bg-center w-full max-w-6xl flex grow flex-col items-center border rounded-lg p-2 sm:p-6
             ${theme === "light"
               ? "bg-none bg-white text-black"
               : "bg-gray-900 text-white"
           }`}
         >
-          <h1 className={`w-full pt-4 border border-transparent text-3xl text-center
+          <h1 className={`w-full pt-4 border border-transparent text-2xl sm:text-3xl text-center
             ${theme === "light"
               ? "bg-white text-black"
               : "bg-black text-white"
@@ -81,7 +81,7 @@ function App() {
               Search Videos
             </label>
             <input
-              className={`w-3xl ml-2 mr-2 shadow-sm shadow-white rounded-lg text-2xl p-1 bg-transparent
+              className={`w-full sm:w-3/4 md:w-1/2 ml-2 mr-2 shadow-sm shadow-white rounded-lg text-2xl p-1 bg-transparent
                 ${theme === "light"
                   ? "border border-black text-black bg-transparent"
                   : "border border-white text-white bg-transparent"
@@ -96,21 +96,23 @@ function App() {
               <button
                 ref={buttonRef}
                 onClick={handleSearch}
-                className="border border-white text-white p-1.5"
+                className="w-full sm:w-auto border border-white text-white p-1.5"
               >
                 Submit Search Request
               </button>
             </div>
           </div>
           {/* map over the array of videos that are returned */}
-          <div className="w-full text-2xl p-3 mb-2 min-h-[400px] min-w-[800px] flex items-center justify-center">
+          {/*<div className="w-full text-2xl p-3 mb-2 min-h-[400px] min-w-[800px] flex items-center justify-center">*/}
+          <div className="w-full max-w-6xl mx-auto text-xl p-2 min-h-[300px] flex items-center justify-center sm:text-2xl sm:p-3 sm:min-h-[400px]">
             {loading ? (
               <div>...loading</div>
             ) : data && data.contents && data.contents.length > 0 ? (
-              <ul className="flex flex-row flex-wrap justify-evenly w-full">
+              // <ul className="flex flex-row flex-wrap justify-evenly w-full">
+              <ul className="flex flex-wrap justify-center w-full">
                 {data.contents.map((item) =>
                   item.video ? (
-                    <li key={item.video.videoId} className="m-4">
+                    <li key={item.video.videoId} className="m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 flex justify-center"> 
                       <div className="flex flex-col items-center">
                         <div
                           id="video"
