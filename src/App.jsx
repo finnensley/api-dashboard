@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import useFetchData from "./custom-hooks/useFetchData";
-
+import ToggleTheme from "./components/toggle";
 
 function App() {
   const [data, error, getData] = useFetchData();
@@ -13,6 +13,10 @@ function App() {
   const buttonRef = useRef(null); // use to press enter
   const [loading, setLoading] = useState(false);
 
+  const [theme, setTheme] = useState(() => {
+    const storedTheme = localStorage.getItem("theme");
+    return storedTheme ? JSON.parse(storedTheme) : "dark";
+  });
 
   //Handler for search button
   const handleSearch = () => {
@@ -42,24 +46,46 @@ function App() {
     if (data && data.contents) {
       localStorage.setItem("videos", JSON.stringify(data));
     }
-  }, [query, data]);
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [query, data, theme]);
 
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className="shadow-lg shadow-white bg-[url('src/assets/pexels-karolina-grabowska-6634140.jpg')] bg-cover bg-center w-full flex grow flex-col items-center border rounded-lg">
-          <h1 className="w-full bg-black pt-4 border border-transparent rounded-lg text-white text-3xl tex-center">
+        <div
+          className={`shadow-lg shadow-white bg-[url('src/assets/pexels-karolina-grabowska-6634140.jpg')] bg-cover bg-center w-full flex grow flex-col items-center border rounded-lg
+            ${theme === "light"
+              ? "bg-none bg-white text-black"
+              : "bg-gray-900 text-white"
+          }`}
+        >
+          <h1 className={`w-full pt-4 border border-transparent text-3xl text-center
+            ${theme === "light"
+              ? "bg-white text-black"
+              : "bg-black text-white"
+            }`}>
             Youtube Videos
           </h1>
-          <h2 className="w-full shadow-lg pb-4 shadow-white bg-black  rounded text-white text-3xl tex-center mb-6">
+          <h2 className={`w-full pb-4 text-3xl text-center mb-6 shadow-lg shadow-white
+            ${theme === "light"
+              ? "bg-white text-black"
+              : "bg-black text-white"
+            }`}>
             (see only your search results)
           </h2>
+          <span>
+            <ToggleTheme theme={theme} setTheme={setTheme} />
+          </span>
           <div className="flex flex-col items-center w-full mb-6 mt-2">
             <label htmlFor="query" className="mb-4 text-2xl">
               Search Videos
             </label>
             <input
-              className="w-3xl ml-2 mr-2 shadow-sm shadow-white border border-white rounded-lg text-white text-2xl p-1 bg-transparent"
+              className={`w-3xl ml-2 mr-2 shadow-sm shadow-white rounded-lg text-2xl p-1 bg-transparent
+                ${theme === "light"
+                  ? "border border-black text-black bg-transparent"
+                  : "border border-white text-white bg-transparent"
+                }`}
               type="text"
               value={query}
               name="query"
@@ -86,8 +112,17 @@ function App() {
                   item.video ? (
                     <li key={item.video.videoId} className="m-4">
                       <div className="flex flex-col items-center">
-                        <div id="video" className="border border-2 rounded-xl">
+                        <div
+                          id="video"
+                          className={`border border-2 rounded-xl transition-shadow duration-200 
+                        ${
+                          theme === "light"
+                            ? "border-transparent hover:shadow-[0_4px_24px_0_rgba(0,0,0,0.7)]"
+                            : "hover:shadow-[0_4px_24px_0_rgba(255,255,255,0.7)]"
+                        }`}
+                        >
                           <iframe
+                            className="rounded-xl"
                             width="480"
                             height="270"
                             src={`https://www.youtube.com/embed/${item.video.videoId}`}
@@ -106,7 +141,7 @@ function App() {
               <div className="p-3 mb-2">No results</div>
             )}
           </div>
-          <p className="w-full bg-black p-4 border border-transparent rounded-lg text-white text-sm text-left">
+          <p className="w-full bg-black p-4 border border-transparent text-white text-sm text-left">
             &copy; 2025 soloSoftwareDev
           </p>
         </div>
