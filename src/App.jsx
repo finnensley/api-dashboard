@@ -53,13 +53,13 @@ function App() {
     <>
       <div className="flex flex-col items-center min-h-screen px-2 sm:px-4 md:px-8 py-4">
         <div
-          className={`shadow-lg shadow-white bg-[url('src/assets/pexels-karolina-grabowska-6634140.jpg')] bg-cover bg-center w-full max-w-6xl flex grow flex-col items-center border rounded-lg p-2 sm:p-6
+          className={`shadow-lg shadow-white bg-[url('/pexels-karolina-grabowska-6634140.jpg')] bg-cover bg-center w-full max-w-6xl flex grow flex-col items-center border rounded-lg p-0 sm:p-6
             ${theme === "light"
               ? "bg-none bg-white text-black"
               : "bg-gray-900 text-white"
           }`}
         >
-          <h1 className={`w-full pt-4 border border-transparent text-2xl sm:text-3xl text-center
+          <h1 className={`w-full -mx-2 sm:-mx-6 pt-4 border border-transparent text-2xl sm:text-3xl text-center
             ${theme === "light"
               ? "bg-white text-black"
               : "bg-black text-white"
@@ -109,7 +109,7 @@ function App() {
               <div>...loading</div>
             ) : data && data.contents && data.contents.length > 0 ? (
               // <ul className="flex flex-row flex-wrap justify-evenly w-full">
-              <ul className="flex flex-wrap justify-center w-full">
+              <ul className="flex flex-wrap justify-center w-full gap-4">
                 {data.contents.map((item) =>
                   item.video ? (
                     <li key={item.video.videoId} className="m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 flex justify-center"> 
