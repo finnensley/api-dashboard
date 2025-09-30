@@ -116,7 +116,7 @@ function App() {
                       <div className="flex flex-col items-center">
                         <div
                           id="video"
-                          className={`border border-2 rounded-xl transition-shadow duration-200
+                          className={`border border-2 rounded-xl transition-shadow duration-200 w-full aspect-video
                         ${
                           theme === "light"
                             ? "border-transparent hover:shadow-[0_4px_24px_0_rgba(0,0,0,0.7)]"
@@ -124,9 +124,9 @@ function App() {
                         }`}
                         >
                           <iframe
-                            className="rounded-xl"
-                            width="480"
-                            height="270"
+                            className="rounded-xl w-full h-full"
+                            // width="480"
+                            // height="270"
                             src={`https://www.youtube.com/embed/${item.video.videoId}`}
                             title={item.video.title}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
