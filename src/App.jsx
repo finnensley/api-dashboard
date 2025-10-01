@@ -68,7 +68,7 @@ function App() {
                }`}
         >
           <h1
-            className={`w-full p-4 sm:p-4 pb-2 text-xs sm:text-sm md:text-base text-center rounded-xl
+            className={`w-full p-6 sm:p-4 pb-2 text-xs sm:text-sm md:text-base text-center rounded-xl
             ${
               theme === "light" ? "bg-white text-black" : "bg-black text-white"
             }`}
