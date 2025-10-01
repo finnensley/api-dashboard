@@ -51,103 +51,130 @@ function App() {
 
   return (
     <>
-      {/* <div className="flex flex-col items-center px-2 sm:px-4 md:px-8 py-4"> */}
+      <div
+        className={`shadow-lg shadow-white bg-[url('/pexels-karolina-grabowska-6634140.jpg')] flex flex-col bg-cover bg-center rounded-xl border"
+           ${
+             theme === "light"
+               ? "bg-none bg-white text-black"
+               : "bg-black text-white"
+           }`}
+      >
         <div
-          className={`shadow-lg shadow-white bg-[url('/pexels-karolina-grabowska-6634140.jpg')] bg-cover bg-center w-auto flex grow flex-col items-center border rounded-lg p-0
-            ${theme === "light"
-              ? "bg-none bg-white text-black"
-              : "bg-gray-900 text-white"
-          }`}
+          className={`bg-black w-full items-center rounded-xl p-0 border
+               ${
+                 theme === "light"
+                   ? "bg-none bg-white text-black shadow-md shadow-black"
+                   : "bg-black text-white shadow-lg shadow-white"
+               }`}
         >
-          <h1 className={`w-full pt-5 pb-2 text-2xl sm:text-3xl text-center rounded-t-lg
-            ${theme === "light"
-              ? "bg-white text-black"
-              : "bg-black text-white"
-            }`}>
+          <h1
+            className={`w-full p-4 sm:p-4 pb-2 text-xs sm:text-sm md:text-base text-center rounded-xl
+            ${
+              theme === "light" ? "bg-white text-black" : "bg-black text-white"
+            }`}
+          >
             Youtube Videos
           </h1>
-          <h2 className={`w-full pb-6 text-3xl text-center mb-6 shadow-lg shadow-white
-            ${theme === "light"
-              ? "bg-white text-black"
-              : "bg-black text-white"
-            }`}>
-            (see only your search results)
+          <h2
+            className={`w-full pb-6 text-sm sm:text-base md:text-lg text-center flex items-center justify-center rounded-xl
+            ${
+              theme === "light" ? "bg-white text-black" : "bg-black text-white"
+            }`}
+          >
+            <span className="text-center">(see only your search results)</span>
+
+            <span className="ml-2">
+              <ToggleTheme theme={theme} setTheme={setTheme} />
+            </span>
           </h2>
-          <span>
-            <ToggleTheme theme={theme} setTheme={setTheme} />
-          </span>
-          <div className="flex flex-col items-center w-full mb-6 mt-2">
-            <label htmlFor="query" className="mb-4 text-2xl">
-              Search Videos
-            </label>
-            <input
-              className={`w-auto sm:w-3/4 md:w-1/2 ml-2 mr-2 shadow-sm shadow-white rounded-lg text-2xl p-1 bg-transparent
-                ${theme === "light"
-                  ? "border border-black text-black bg-transparent"
-                  : "border border-white text-white bg-transparent"
+        </div>
+        <div className="flex flex-col mt-7 p-2 text-sm sm:text-base md:text-lg items-center w-full mb-6">
+          <label htmlFor="query" className="mb-4 text-2xl">
+            Search Videos
+          </label>
+          <input
+            className={`w-auto ml-2 mr-2 shadow-sm shadow-white rounded-lg text-sm sm:text-base md:text-lg p-1 bg-transparent
+                ${
+                  theme === "light"
+                    ? "border border-black text-black bg-transparent"
+                    : "border border-white text-white bg-transparent"
                 }`}
-              type="text"
-              value={query}
-              name="query"
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            <div className="m-4 text-xl">
-              <button
-                ref={buttonRef}
-                onClick={handleSearch}
-                className="w-auto sm:w-auto border border-white text-white p-1.5"
-              >
-                Submit Search Request
-              </button>
-            </div>
+            type="text"
+            value={query}
+            name="query"
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <div className="mt-6 text-sm sm:text-base md:text-lg">
+            <button
+              ref={buttonRef}
+              onClick={handleSearch}
+              className={`w-auto sm:w-auto rounded-lg px-4 py-2 transition 
+               ${
+                theme === "light"
+                ? "border text-black bg-transparent"
+                : "border text-white bg-transparent"
+              }`}
+            >
+              Submit
+            </button>
           </div>
-          {/* map over the array of videos that are returned */}
-          {/*<div className="w-full text-2xl p-3 mb-2 min-h-[400px] min-w-[800px] flex items-center justify-center">*/}
-          <div className="text-xl p-2 flex items-center min-h-[300px] justify-center sm:text-2xl sm:p-3 sm:min-h-[400px]">
-            {loading ? (
-              <div>...loading</div>
-            ) : data && data.contents && data.contents.length > 0 ? (
-              // <ul className="flex flex-row flex-wrap justify-evenly w-full">
-              <ul className="flex flex-wrap justify-evenly gap-4">
-                {data.contents.map((item) =>
-                  item.video ? (
-                    <li key={item.video.videoId} className="p-2 w-auto flex justify-center"> 
-                      <div className="flex flex-col items-center">
-                        <div
-                          id="video"
-                          className={`border border-2 rounded-xl transition-shadow duration-200 w-full aspect-video
+        </div>
+        {/* map over the array of videos that are returned */}
+        {/*<div className="w-full text-2xl p-3 mb-2 min-h-[400px] min-w-[800px] flex items-center justify-center">*/}
+        <div className="text-sm sm:text-base md:text-lg p-2 flex items-center min-h-[300px] justify-center sm:p-3 sm:min-h-[400px]">
+          {loading ? (
+            <div>...loading</div>
+          ) : data && data.contents && data.contents.length > 0 ? (
+            // <ul className="flex flex-row flex-wrap justify-evenly w-full">
+            <ul className="flex flex-wrap justify-evenly gap-4">
+              {data.contents.map((item) =>
+                item.video ? (
+                  <li
+                    key={item.video.videoId}
+                    className="p-2 w-auto flex justify-center"
+                  >
+                    <div className="flex flex-col items-center">
+                      <div
+                        id="video"
+                        className={`border border-2 rounded-xl transition-shadow duration-200 w-full aspect-video
                         ${
                           theme === "light"
                             ? "border-transparent hover:shadow-[0_4px_24px_0_rgba(0,0,0,0.7)]"
                             : "hover:shadow-[0_4px_24px_0_rgba(255,255,255,0.7)]"
                         }`}
-                        >
-                          <iframe
-                            className="rounded-xl w-full h-full"
-                            // width="480"
-                            // height="270"
-                            src={`https://www.youtube.com/embed/${item.video.videoId}`}
-                            title={item.video.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          ></iframe>
-                        </div>
-                        <div className="mt-2 max-w-xs">{item.video.title}</div>
+                      >
+                        <iframe
+                          className="rounded-xl w-full h-full"
+                          // width="480"
+                          // height="270"
+                          src={`https://www.youtube.com/embed/${item.video.videoId}`}
+                          title={item.video.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
                       </div>
-                    </li>
-                  ) : null
-                )}
-              </ul>
-            ) : (
-              <div className="p-3 mb-2">No results</div>
-            )}
-          </div>
-          <p className="w-full bg-black pl-4 pt-4 pb-4 border border-transparent text-white text-sm text-left rounded-lg">
-            &copy; 2025 soloSoftwareDev
-          </p>
+                      <div className="mt-2 max-w-xs">{item.video.title}</div>
+                    </div>
+                  </li>
+                ) : null
+              )}
+            </ul>
+          ) : (
+            <div className="p-3 mb-2">No results</div>
+          )}
         </div>
-      {/* </div> */}
+        <div
+          className={`w-full bg-black p-5 border text-sm sm:text-base md:text-lg text-left rounded-b-xl rounded-t-xl 
+        ${
+          theme === "light"
+            ? "bg-white text-black border-none"
+            : "bg-black text-white border-white"
+        }`}
+        >
+          <p>&copy; 2025 soloSoftwareDev</p>
+        </div>
+      </div>
     </>
   );
 }
